@@ -18,11 +18,20 @@ namespace _01_Intro.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Achievement()
         {
             return View();
         }
 
+        public IActionResult Gallery()
+        {
+            return View();
+        }
+
+        public IActionResult GeneralInfo()
+        {
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
