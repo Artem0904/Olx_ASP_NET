@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using olx.Data;
+
 namespace olx
 {
     public class Program
@@ -5,9 +8,12 @@ namespace olx
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            var connStr = builder.Configuration.GetConnectionString("LocalDb");
 
             // Add services to the container.
+            // DI - Dependency Injection
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<OlxShopDbContext>(opts => opts.UseSqlServer(connStr));
 
             var app = builder.Build();
 
