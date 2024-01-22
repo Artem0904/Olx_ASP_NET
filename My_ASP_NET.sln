@@ -5,7 +5,7 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01_Intro", "01_Intro\01_Intro.csproj", "{B6F28CB8-D9A9-41FF-8A68-E6EB482BEF3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "olx", "olx\olx.csproj", "{844B738A-EEFB-429E-8F7B-5329004C9CC5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OlxShop", "OlxShop\OlxShop.csproj", "{D0977F62-B1F1-4EBA-8916-2CD9F293A640}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{B6F28CB8-D9A9-41FF-8A68-E6EB482BEF3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6F28CB8-D9A9-41FF-8A68-E6EB482BEF3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6F28CB8-D9A9-41FF-8A68-E6EB482BEF3E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{844B738A-EEFB-429E-8F7B-5329004C9CC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{844B738A-EEFB-429E-8F7B-5329004C9CC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{844B738A-EEFB-429E-8F7B-5329004C9CC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{844B738A-EEFB-429E-8F7B-5329004C9CC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0977F62-B1F1-4EBA-8916-2CD9F293A640}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0977F62-B1F1-4EBA-8916-2CD9F293A640}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0977F62-B1F1-4EBA-8916-2CD9F293A640}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0977F62-B1F1-4EBA-8916-2CD9F293A640}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
