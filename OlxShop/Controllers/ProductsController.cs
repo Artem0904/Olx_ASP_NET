@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using OlxShop.Data;
 using OlxShop.Data.Entities;
 
@@ -12,6 +13,10 @@ namespace OlxShop.Controllers
         {
             this.context = context;
         }
+        private void LoadCategories()
+        {
+            ViewBag.Categories = new SelectList(context.Categories.ToList(), nameof(Category.Id), nameof(Category.Name));
+        }
 
         public IActionResult Index()
         {
@@ -23,6 +28,7 @@ namespace OlxShop.Controllers
 
         public IActionResult Create()
         {
+            LoadCategories();
             return View();
         }
 
@@ -32,6 +38,7 @@ namespace OlxShop.Controllers
             // TODO: add validation
             if (!ModelState.IsValid) 
             {
+                LoadCategories();
                 return View();
             }
 

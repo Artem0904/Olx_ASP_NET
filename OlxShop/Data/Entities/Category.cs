@@ -1,9 +1,9 @@
 ﻿namespace OlxShop.Data.Entities
 {
-    public class Country
+    public class Category
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public ICollection<City> Cities { get; set; } = new HashSet<City>();
+        public ICollection<Product> Products { get; set; } = new HashSet<Product>();
     }
 }
