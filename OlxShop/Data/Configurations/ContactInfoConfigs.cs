@@ -13,7 +13,7 @@ namespace OlxShop.Data.Configurations
             builder.Property(x => x.PhoneNumber2).HasMaxLength(16);
             builder.Property(x => x.WebSiteUrl).HasMaxLength(1000);
 
-            builder.HasOne(x => x.User).WithOne(x => x.ContactInfo);
+            builder.HasOne(x => x.User).WithOne(x => x.ContactInfo).HasForeignKey<ContactInfo>(x=>x.Id).IsRequired(); ;
         }
     }
 }

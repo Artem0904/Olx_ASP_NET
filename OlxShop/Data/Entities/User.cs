@@ -11,8 +11,8 @@ namespace OlxShop.Data.Entities
         public string Password { get; set; }
         public int? Age { get; set; }
         public ICollection<Product> Products { get; set; } = new HashSet<Product>();
-        public int ContactInfoId { get; set; }
-        public ContactInfo ContactInfo { get; set; }
+        public int? ContactInfoId { get; set; }
+        public ContactInfo? ContactInfo { get; set; }
 
     }
 }

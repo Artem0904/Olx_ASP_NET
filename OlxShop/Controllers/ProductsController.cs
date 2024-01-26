@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using OlxShop.Data;
 using OlxShop.Data.Entities;
 
@@ -21,7 +22,7 @@ namespace OlxShop.Controllers
         public IActionResult Index()
         {
             // get all products from the db
-            var products = context.Products.ToList();
+            var products = context.Products.Include(x => x.Category).ToList();
 
             return View(products);
         }
@@ -52,8 +53,10 @@ namespace OlxShop.Controllers
         {
             // get product by ID from the db
             var product = context.Products.Find(id);
-
             if (product == null) return NotFound();
+
+            // load related entity
+            context.Entry(product).Reference(x => x.Category).Load();
 
             return View(product);
         }
