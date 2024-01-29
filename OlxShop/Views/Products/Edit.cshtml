@@ -1,7 +1,7 @@
 ﻿@model ProductDto;
-<h1>Create New Product</h1>
+<h1>Edit Product</h1>
 
-<form class="row g-3" method="post" asp-action="Create">
+<form class="row g-3" method="post" asp-action="Edit">
     <div class="col-md-12">
         <label asp-for=Name class="form-label">Name</label>
         <input asp-for=Name type="text" class="form-control" placeholder="Enter name">
@@ -36,7 +36,7 @@
 
     <div class="col-12">
         <div class="form-check">
-            <input asp-for=InStock checked class="form-check-input" type="checkbox">
+            <input asp-for=InStock class="form-check-input" type="checkbox">
             <label asp-for=InStock class="form-check-label">
                 In Stock
             </label>
@@ -47,6 +47,6 @@
         <a asp-action="Index" class="btn btn-dark w-100">Back</a>
     </div>
     <div class="col-md-6">
-        <button type="submit" class="btn btn-success w-100">Create New Product</button>
+        <button type="submit" class="btn btn-success w-100">Edit Product</button>
     </div>
 </form>

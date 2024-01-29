@@ -1,28 +1,34 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using BusinessLogic.DTOs;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using OlxShop.Data;
-using OlxShop.Data.Entities;
+using DataAccess.Data;
+using DataAccess.Data.Entities;
 
 namespace OlxShop.Controllers
 {
     public class ProductsController : Controller
     {
         private readonly ShopDbContext context;
+        private readonly IMapper mapper;
 
-        public ProductsController(ShopDbContext context)
+        public ProductsController(ShopDbContext context, IMapper mapper)
         {
             this.context = context;
+            this.mapper = mapper;
         }
+
         private void LoadCategories()
         {
-            ViewBag.Categories = new SelectList(context.Categories.ToList(), nameof(Category.Id), nameof(Category.Name));
+            var categories = mapper.Map<List<CategoryDto>>(context.Categories.ToList());
+            ViewBag.Categories = new SelectList(categories, nameof(Category.Id), nameof(Category.Name));
         }
 
         public IActionResult Index()
         {
             // get all products from the db
-            var products = context.Products.Include(x => x.Category).ToList();
+            var products = mapper.Map<List<ProductDto>>(context.Products.Include(x => x.Category).ToList());
 
             return View(products);
         }
@@ -34,36 +40,61 @@ namespace OlxShop.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Product model)
+        public IActionResult Create(ProductDto model)
         {
-            // TODO: add validation
-            if (!ModelState.IsValid) 
+            // model validation
+            if (!ModelState.IsValid)
             {
                 LoadCategories();
                 return View();
             }
 
-            context.Products.Add(model);
+            context.Products.Add(mapper.Map<Product>(model));
             context.SaveChanges();
 
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Details(int id)
+        public IActionResult Edit(int id)
         {
-            // get product by ID from the db
             var product = context.Products.Find(id);
             if (product == null) return NotFound();
 
-            // load related entity
+            LoadCategories();
+            return View(mapper.Map<ProductDto>(product));
+        }
+
+        [HttpPost]
+        public IActionResult Edit(ProductDto model)
+        {
+            if (!ModelState.IsValid)
+            {
+                LoadCategories();
+                return View();
+            }
+
+            context.Products.Update(mapper.Map<Product>(model));
+            context.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Details(int id, string? returnUrl)
+        {
+            var product = context.Products.Find(id);
+            if (product == null) return NotFound();
+
             context.Entry(product).Reference(x => x.Category).Load();
 
-            return View(product);
+            // convert entity type to DTO
+            var dto = mapper.Map<ProductDto>(product);
+
+            ViewBag.ReturnUrl = returnUrl;
+            return View(dto);
         }
 
         public IActionResult Delete(int id)
         {
-            // delete product by id
             var product = context.Products.Find(id);
 
             if (product == null) return NotFound();

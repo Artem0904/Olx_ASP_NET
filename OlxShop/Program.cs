@@ -2,7 +2,8 @@
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
-using OlxShop.Data;
+using DataAccess.Data;
+using BusinessLogic;
 
 namespace OlxShop
 {
@@ -18,11 +19,8 @@ namespace OlxShop
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<ShopDbContext>(opts => opts.UseSqlServer(connStr));
 
-            builder.Services.AddFluentValidationAutoValidation();
-            // enable client-side validation
-            builder.Services.AddFluentValidationClientsideAdapters();
-            // Load an assembly reference rather than using a marker type.
-            builder.Services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
+            builder.Services.AddAutoMapper();
+            builder.Services.AddFluentValidators();
 
             var app = builder.Build();
 

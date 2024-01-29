@@ -1,4 +1,4 @@
-﻿@model List<Product>;
+﻿@model List<ProductDto>;
 
 <h1>Product Panel</h1>
 <p>You can manage the available products here.</p>
@@ -6,7 +6,6 @@
 <div>
     <a asp-action="Create" class="btn btn-primary">Create New Product</a>
 </div>
-
 
 <table class="table table-striped">
     <thead>
@@ -25,17 +24,18 @@
         {
             <tr class="align-middle">
                 <th scope="row">@i.Id</th>
-                <td>@i.Name
-                    @if(i.Discount > 0)
+                <td>
+                    @i.Name
+                    @if (i.Discount > 0)
                     {
                         <span class="badge bg-primary">SALE</span>
                     }
                 </td>
                 <td>@i.Price$</td>
-                <td>@i.Category?.Name</td>
+                <td>@i.CategoryName</td>
                 <td>@i.Discount%</td>
                 <td>
-                    @if(i.InStock)
+                    @if (i.InStock)
                     {
                         <span class="badge bg-success">In Stock</span>
                     }
@@ -46,8 +46,11 @@
                 </td>
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <a class="btn btn-dark" asp-action="Details" asp-route-id="@i.Id">
+                        <a class="btn btn-dark" asp-action="Details" asp-route-id="@i.Id" asp-route-returnUrl="@Context.Request.Path">
                             <i class="bi bi-info-lg"></i>
+                        </a>
+                        <a class="btn btn-warning" asp-action="Edit" asp-route-id="@i.Id">
+                            <i class="bi bi-pencil-fill"></i>
                         </a>
                         <a class="btn btn-danger" asp-action="Delete" asp-route-id="@i.Id">
                             <i class="bi bi-trash3-fill"></i>

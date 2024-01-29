@@ -1,25 +1,27 @@
 using Microsoft.AspNetCore.Mvc;
-using OlxShop.Data;
+using DataAccess.Data;
 using OlxShop.Models;
 using System.Diagnostics;
+using Microsoft.EntityFrameworkCore;
 
 namespace OlxShop.Controllers
 {
     public class HomeController : Controller
     {
-        public HomeController()
+        private readonly ShopDbContext context;
+        public HomeController(ShopDbContext context)
         {
-         
+            this.context = context;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var products = context.Products.Include(x => x.Category).ToList();
+            return View(products);
         }
+
         public IActionResult Privacy()
         {
-            // logic: get/save/validate data
-
             return View();
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
