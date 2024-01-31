@@ -3,21 +3,22 @@ using DataAccess.Data;
 using OlxShop.Models;
 using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
+using BusinessLogic.Services;
+using BusinessLogic.Interfaces;
 
 namespace OlxShop.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ShopDbContext context;
-        public HomeController(ShopDbContext context)
+        private readonly IProductsService productsService;
+        public HomeController(IProductsService productsService)
         {
-            this.context = context;
+            this.productsService = productsService;
         }
 
         public IActionResult Index()
         {
-            var products = context.Products.Include(x => x.Category).ToList();
-            return View(products);
+            return View(productsService.GetAll());
         }
 
         public IActionResult Privacy()

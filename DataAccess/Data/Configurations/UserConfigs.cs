@@ -14,6 +14,7 @@ namespace DataAccess.Data.Configurations
             builder.Property(x => x.Email).HasMaxLength(200).IsRequired();
             builder.Property(x => x.Password).HasMaxLength(200).IsRequired();
             builder.Property(x => x.Age).HasMaxLength(100);
+            
         }
     }
 }

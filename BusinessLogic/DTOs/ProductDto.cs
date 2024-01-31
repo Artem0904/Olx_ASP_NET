@@ -12,6 +12,7 @@ namespace BusinessLogic.DTOs
         public bool InStock { get; set; }
         public string ImageUrl { get; set; }
         public string? CategoryName { get; set; }
-        public string? UserName { get; set; }   
+        public int UserId { get; set; }
+        public string UserName { get; set; }   
     }
-}
+}  

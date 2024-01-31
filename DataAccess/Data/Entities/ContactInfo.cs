@@ -1,4 +1,6 @@
-﻿namespace DataAccess.Data.Entities
+﻿using OlxShop.Migrations;
+
+namespace DataAccess.Data.Entities
 {
     public class ContactInfo
     {
@@ -9,5 +11,6 @@
         public int CityId { get; set; }
         public City City { get; set; }
         public User User { get; set; }
+        public int UserId { get; set; }
     }
 }

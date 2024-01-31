@@ -1,8 +1,11 @@
-﻿using FluentValidation;
+﻿using BusinessLogic.Extensions;
+using BusinessLogic.Interfaces;
+using BusinessLogic.Services;
+using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BusinessLogic
+namespace BusinessLogic.Extensions
 {
     public static class ServiceExtensions
     {
@@ -18,6 +21,12 @@ namespace BusinessLogic
             services.AddFluentValidationClientsideAdapters();
             // Load an assembly reference rather than using a marker type.
             services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
+        }
+
+        public static void AddCustomServices(this IServiceCollection services)
+        {
+            services.AddScoped<IProductsService, ProductsService>();
+            // others...
         }
     }
 }

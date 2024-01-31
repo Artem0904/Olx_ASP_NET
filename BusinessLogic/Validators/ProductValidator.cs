@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using BusinessLogic.DTOs;
+using BusinessLogic.Extensions;
 
 namespace BusinessLogic.Validators
 {
@@ -29,20 +30,7 @@ namespace BusinessLogic.Validators
 
             RuleFor(x => x.ImageUrl)
                 .NotEmpty()
-                .Must(LinkMustBeAUri).WithMessage("{PropertyName} must be a valid URL address.");
-        }
-
-        private static bool LinkMustBeAUri(string link)
-        {
-            if (string.IsNullOrWhiteSpace(link))
-            {
-                return false;
-            }
-
-            //Courtesy of @Pure.Krome's comment and https://stackoverflow.com/a/25654227/563532
-            Uri outUri;
-            return Uri.TryCreate(link, UriKind.Absolute, out outUri)
-                   && (outUri.Scheme == Uri.UriSchemeHttp || outUri.Scheme == Uri.UriSchemeHttps);
+                .Must(ValidatorsExtensions.LinkMustBeAUri).WithMessage("{PropertyName} must be a valid URL address.");
         }
     }
 }
