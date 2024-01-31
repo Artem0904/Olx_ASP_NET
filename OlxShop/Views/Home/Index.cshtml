@@ -1,5 +1,14 @@
 ﻿<div class="text-center">
     <h1 class="display-4">Welcome</h1>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+        @foreach (var i in Model)
+        {
+            <div class="col">
+                <partial name="_ProductCardPartial" model="@i" />
+            </div>
+        }
+    </div>
 </div>
 
 @* Razor Syntax: @{ code } if for switch ... *@

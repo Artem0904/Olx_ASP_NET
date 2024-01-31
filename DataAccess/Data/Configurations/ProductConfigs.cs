@@ -18,6 +18,7 @@ namespace DataAccess.Data.Configurations
 
             builder.HasOne(x => x.User).WithMany(x => x.Products).HasForeignKey(x => x.UserId);
             builder.Property(x => x.CategoryId).HasDefaultValue(9);
+            builder.Property(x => x.UserId).HasDefaultValue(1);
         }
     }
 }
