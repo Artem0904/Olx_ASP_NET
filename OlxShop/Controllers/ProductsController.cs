@@ -22,6 +22,9 @@ namespace OlxShop.Controllers
 
         private void LoadCategories()
         {
+            // Send temporary data to view
+            // 1: TempData[key] = value
+            // 2: ViewBag.Key = value
             var categories = productsService.GetAllCategories();
             ViewBag.Categories = new SelectList(categories, nameof(Category.Id), nameof(Category.Name));
         }
@@ -30,7 +33,6 @@ namespace OlxShop.Controllers
         {
             // get all products from the db
             return View(productsService.GetAll());
-
         }
 
         public IActionResult Create()
@@ -68,7 +70,13 @@ namespace OlxShop.Controllers
             if (!ModelState.IsValid)
             {
                 LoadCategories();
-                return View();
+                var errorMessages = ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage)
+                    .ToList();
+
+                ViewBag.ErrorMessages = errorMessages;  
+                return View(model);
             }
 
             productsService.Edit(model);

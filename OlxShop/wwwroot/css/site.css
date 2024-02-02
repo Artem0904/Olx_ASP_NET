@@ -21,6 +21,50 @@ body {
   margin-bottom: 60px;
 }
 
+.details-card .card-header {
+    display: grid;
+    grid-template-columns: 40px 1fr 40px;
+    align-items: center;
+}
+
+.details-card .image-block {
+    margin: 16px;
+}
+
+.details-card img {
+    max-width: 330px;
+    width: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+}
+.home-card{
+    width:100%;
+}
+.home-card img {
+    height: 200px;
+    object-fit: contain;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.home-card .card-title a {
+    color: black;
+    text-decoration: none;
+}
+
+.home-card .card-title a:hover {
+    color: darkgray;
+    text-decoration: underline;
+}
+
+.zoom {
+    transition: .2s;
+}
+
+.zoom:hover {
+    transform: scale(3.2);
+}
+
 .card img {
     width: 50%;
     object-fit: contain;
@@ -30,5 +74,15 @@ body {
 
 #navBar {
     background-color: rgba(0,47,52,255);
+    height: 70px;
     color: white;
+}
+
+#navBar img {
+    object-fit: contain;
+    height: 70px;
+}
+
+header {
+    margin-top: 0;
 }

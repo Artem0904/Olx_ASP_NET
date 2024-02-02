@@ -17,6 +17,6 @@ namespace DataAccess.Data.Entities
         public int? UserId { get; set; }
 
         public Category Category { get; set; }
-        public User User { get; set; }
+        public User? User { get; set; }
     }
 }

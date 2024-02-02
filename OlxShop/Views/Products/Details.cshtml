@@ -1,5 +1,6 @@
 ﻿@model ProductDto;
 
+
 <div class="card text-center details-card">
     <h5 class="card-header">
         <a href="@ViewBag.ReturnUrl" class="btn btn-dark">
@@ -16,7 +17,10 @@
         }
         <h5 class="card-title fs-1">@Model.Name</h5>
         <p class="card-text fs-4">@Model.Price$ - @Model.CategoryName</p>
-        <a href="#" class="btn btn-success my-3">Buy</a>
+        <div>
+            <a asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id" class="btn btn-primary">Add to Cart</a>
+            <a href="#" class="btn btn-success my-3">Buy</a>
+        </div>
         <div class="image-block">
             <img src="@Model.ImageUrl" alt="Product Image" />
         </div>

@@ -2,6 +2,17 @@
 <h1>Edit Product</h1>
 
 <form class="row g-3" method="post" asp-action="Edit">
+    @if (ViewBag.ErrorMessages != null)
+    {
+        <div class="alert alert-danger">
+            <ul>
+                @foreach (var errorMessage in ViewBag.ErrorMessages)
+                {
+                    <li>@errorMessage</li>
+                }
+            </ul>
+        </div>
+    }
     <div class="col-md-12">
         <label asp-for=Name class="form-label">Name</label>
         <input asp-for=Name type="text" class="form-control" placeholder="Enter name">
