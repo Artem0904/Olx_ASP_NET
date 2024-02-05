@@ -6,7 +6,7 @@
         public string Name { get; set; }
         public int CountryId { get; set; }
         public Country Country { get; set; }
-        public ICollection<ContactInfo> ContactInfos { get; set; } = new HashSet<ContactInfo>();
+        //public ICollection<ContactInfo> ContactInfos { get; set; } = new HashSet<ContactInfo>();
 
     }
 }

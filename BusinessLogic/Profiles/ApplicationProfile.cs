@@ -15,8 +15,8 @@ namespace BusinessLogic.Profiles
         {
             CreateMap<ProductDto, Product>()
                 .ForMember(x => x.Category, opt => opt.Ignore());
-            CreateMap<ProductDto, Product>()
-               .ForMember(x => x.User, opt => opt.Ignore());
+            //CreateMap<ProductDto, Product>()
+            //   .ForMember(x => x.User, opt => opt.Ignore());
             CreateMap<Product, ProductDto>();
 
             CreateMap<Category, CategoryDto>().ReverseMap();

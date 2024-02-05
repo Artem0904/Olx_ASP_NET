@@ -10,8 +10,6 @@ namespace DataAccess.Data.Configurations
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name).HasMaxLength(200).IsRequired();
-
-
         }
     }
 }
