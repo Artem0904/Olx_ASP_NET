@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using DataAccess.Data;
 using DataAccess;
 using BusinessLogic.Extensions;
+using BusinessLogic.Interfaces;
+using OlxShop.Services;
 
 namespace OlxShop
 {
@@ -24,6 +26,8 @@ namespace OlxShop
             builder.Services.AddFluentValidators();
 
             builder.Services.AddCustomServices();
+
+            builder.Services.AddScoped<ICartService, CartService>();
 
             builder.Services.AddDistributedMemoryCache();
 

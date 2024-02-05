@@ -2,41 +2,37 @@
 using BusinessLogic.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using MVC_pv221.Helpers;
+using OlxShop.Helpers;
 using System.Text.Json;
 
-namespace MVC_pv221.Controllers
+namespace OlxShop.Controllers
 {
     public class CartController : Controller
     {
-        const string key = "cart_items_key";
-        private readonly IProductsService productsService;
+        private readonly ICartService cartService;
 
-        public CartController(IProductsService productsService)
+        public CartController(ICartService cartService)
         {
-            this.productsService = productsService;
+            this.cartService = cartService;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string returnUrl)
         {
-            var ids = HttpContext.Session.Get<List<int>>(key) ?? new();
-            return View(productsService.Get(ids));
+            ViewBag.ReturnUrl = returnUrl;
+            return View(cartService.GetProducts());
         }
 
-        public IActionResult Add(int id)
+        public IActionResult Add(int id, string returnUrl)
         {
-            var ids = HttpContext.Session.Get<List<int>>(key) ?? new();
-            ids.Add(id);
-
-            HttpContext.Session.SetString(key, JsonSerializer.Serialize(ids));
-
-            return RedirectToAction(nameof(Index));
+            cartService.Add(id);
+            return Redirect(returnUrl);
         }
 
-        public IActionResult Remove(int id)
+        public IActionResult Remove(int id, string returnUrl)
         {
-            // TODO
-            return RedirectToAction(nameof(Index));
+            cartService.Remove(id);
+            return Redirect(returnUrl);
         }
     }
 }
+

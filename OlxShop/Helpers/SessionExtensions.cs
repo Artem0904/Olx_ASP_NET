@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace MVC_pv221.Helpers
+namespace OlxShop.Helpers
 {
     public static class SessionExtensions
     {
