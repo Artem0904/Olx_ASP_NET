@@ -2,7 +2,7 @@
 @model ProductDto;
 @inject ICartService cartService;
 
-<div class="card h-100 home-card">
+@*<div class="card h-100 home-card">
     <a asp-controller="Products" asp-action="Details" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path">
         <img src="@Model.ImageUrl" class="card-img-top" alt="Product Image">
     </a>
@@ -32,8 +32,9 @@
         </div>
     </div>
 </div>
+*@
 
-@*<div class="card mb-3 w-100">
+<div class="card mb-3 w-100">
     <div class="row g-0 home-card w-100">
         <a class="col-md-4" asp-controller="Products" asp-action="Details" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path">
             <img src="@Model.ImageUrl" class="card-img-top" alt="Product Image">
@@ -53,10 +54,17 @@
                     @(Model.CategoryName ?? "category not loaded")
                 </p>
                 <div>
-                    <a asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id" class="btn btn-primary mb-1">Add to Cart</a>
+                    @if (cartService.IsExists(Model.Id))
+            {
+                <a asp-controller="Cart" asp-action="Remove" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path" class="btn btn-secondary mb-1">Remove from Cart</a>
+            }
+            else
+            {
+                <a asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path" class="btn btn-primary mb-1">Add to Cart</a>
+            }
                     <button type="button" class="btn btn-success mb-1">Buy Now</button>
                 </div>
             </div>
         </div>
     </div>
-</div>*@
+</div>
