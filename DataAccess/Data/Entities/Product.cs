@@ -11,12 +11,11 @@ namespace DataAccess.Data.Entities
         public decimal Discount { get; set; }
         public bool InStock { get; set; }
         public string ImageUrl { get; set; }
-        //public string Category { get; set; }
-
+        public ICollection<Order>? Orders { get; set; }
         public int CategoryId { get; set; }
-        //public int? UserId { get; set; }
-
         public Category Category { get; set; }
+
         //public User? User { get; set; }
+        //public int? UserId { get; set; }
     }
 }
