@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BusinessLogic.DTOs;
+using BusinessLogic.Interfaces;
 using DataAccess.Data.Entities;
 using System;
 using System.Collections.Generic;
@@ -11,16 +12,17 @@ namespace BusinessLogic.Profiles
 {
     public class ApplicationProfile : Profile
     {
-        public ApplicationProfile()
+        public ApplicationProfile(IFileService fileService)
         {
             CreateMap<ProductDto, Product>()
                 .ForMember(x => x.Category, opt => opt.Ignore());
-            //CreateMap<ProductDto, Product>()
-            //   .ForMember(x => x.User, opt => opt.Ignore());
             CreateMap<Product, ProductDto>();
 
             CreateMap<Category, CategoryDto>().ReverseMap();
             CreateMap<Order, OrderDto>().ReverseMap();
+
+            CreateMap<CreateProductModel, Product>()
+                .ForMember(x => x.ImageUrl, opt => opt.MapFrom(src => fileService.SaveProductImage(src.Image).Result));
         }
     }
 }
