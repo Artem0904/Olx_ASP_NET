@@ -76,7 +76,7 @@ namespace OlxShop.Areas.Identity.Pages.Account.Manage
             Input = new InputModel
             {
                 PhoneNumber = phoneNumber,
-                Birthdate = (DateTime)user.Birthdate
+                Birthdate = user.Birthdate
             };
         }
 

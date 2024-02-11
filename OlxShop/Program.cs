@@ -9,6 +9,7 @@ using BusinessLogic.Interfaces;
 using OlxShop.Services;
 using Microsoft.AspNetCore.Identity;
 using DataAccess.Data.Entities;
+using OlxShop.Helpers;
 
 namespace OlxShop
 {
@@ -24,7 +25,12 @@ namespace OlxShop
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext(connStr);
 
-            builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddIdentity<User, IdentityRole>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = false;
+            })
+                .AddDefaultTokenProviders()
+                .AddDefaultUI()
                 .AddEntityFrameworkStores<ShopDbContext>();
 
             builder.Services.AddAutoMapper();
@@ -43,6 +49,13 @@ namespace OlxShop
             });
 
             var app = builder.Build();
+
+            // insert initial roles and admin user
+            using (var scope = app.Services.CreateScope())
+            {
+                Seeder.SeedRoles(scope.ServiceProvider).Wait();
+                Seeder.SeedAdmin(scope.ServiceProvider).Wait();
+            }
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

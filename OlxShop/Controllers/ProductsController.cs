@@ -6,9 +6,11 @@ using Microsoft.EntityFrameworkCore;
 using DataAccess.Data;
 using DataAccess.Data.Entities;
 using BusinessLogic.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace OlxShop.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ProductsController : Controller
     {
         private readonly IProductsService productsService;
@@ -29,10 +31,22 @@ namespace OlxShop.Controllers
             ViewBag.Categories = new SelectList(categories, nameof(Category.Id), nameof(Category.Name));
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             // get all products from the db
             return View(productsService.GetAll());
+        }
+
+        [AllowAnonymous]
+        public IActionResult Details(int id, string? returnUrl)
+        {
+            // get product by ID from the db
+            var product = productsService.Get(id);
+            if (product == null) return NotFound();
+
+            ViewBag.ReturnUrl = returnUrl;
+            return View(product);
         }
 
         public IActionResult Create()
@@ -42,7 +56,7 @@ namespace OlxShop.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(ProductDto model)
+        public IActionResult Create(CreateProductModel model)
         {
             // model validation
             if (!ModelState.IsValid)
@@ -70,27 +84,11 @@ namespace OlxShop.Controllers
             if (!ModelState.IsValid)
             {
                 LoadCategories();
-                var errorMessages = ModelState.Values
-                    .SelectMany(v => v.Errors)
-                    .Select(e => e.ErrorMessage)
-                    .ToList();
-
-                ViewBag.ErrorMessages = errorMessages;  
-                return View(model);
+                return View();
             }
 
             productsService.Edit(model);
             return RedirectToAction(nameof(Index));
-        }
-
-        public IActionResult Details(int id, string? returnUrl)
-        {
-            // get product by ID from the db
-            var product = productsService.Get(id);
-            if (product == null) return NotFound();
-
-            ViewBag.ReturnUrl = returnUrl;
-            return View(product);
         }
 
         public IActionResult Delete(int id)

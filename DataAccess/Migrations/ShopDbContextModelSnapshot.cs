@@ -202,8 +202,8 @@ namespace OlxShop.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Discount")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("Discount")
+                        .HasColumnType("int");
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
@@ -230,7 +230,7 @@ namespace OlxShop.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-                            Discount = 10m,
+                            Discount = 10,
                             ImageUrl = "https://applecity.com.ua/image/cache/catalog/0iphone/ipohnex/iphone-x-black-1000x1000.png",
                             InStock = false,
                             Name = "iPhone X",
@@ -240,7 +240,7 @@ namespace OlxShop.Migrations
                         {
                             Id = 2,
                             CategoryId = 2,
-                            Discount = 0m,
+                            Discount = 0,
                             ImageUrl = "https://http2.mlstatic.com/D_NQ_NP_727192-CBT53879999753_022023-V.jpg",
                             InStock = false,
                             Name = "PowerBall",
@@ -250,7 +250,7 @@ namespace OlxShop.Migrations
                         {
                             Id = 3,
                             CategoryId = 3,
-                            Discount = 15m,
+                            Discount = 15,
                             ImageUrl = "https://www.seekpng.com/png/detail/316-3168852_nike-air-logo-t-shirt-nike-t-shirt.png",
                             InStock = true,
                             Name = "Nike T-Shirt",
@@ -260,7 +260,7 @@ namespace OlxShop.Migrations
                         {
                             Id = 4,
                             CategoryId = 1,
-                            Discount = 5m,
+                            Discount = 5,
                             ImageUrl = "https://sota.kh.ua/image/cache/data/Samsung-2/samsung-s23-s23plus-blk-01-700x700.webp",
                             InStock = true,
                             Name = "Samsung S23",
@@ -270,7 +270,7 @@ namespace OlxShop.Migrations
                         {
                             Id = 5,
                             CategoryId = 2,
-                            Discount = 0m,
+                            Discount = 0,
                             ImageUrl = "https://cdn.shopify.com/s/files/1/0046/1163/7320/products/69ee701e-e806-4c4d-b804-d53dc1f0e11a_grande.jpg",
                             InStock = false,
                             Name = "Air Ball",
@@ -280,7 +280,7 @@ namespace OlxShop.Migrations
                         {
                             Id = 6,
                             CategoryId = 1,
-                            Discount = 10m,
+                            Discount = 10,
                             ImageUrl = "https://newtime.ua/image/import/catalog/mac/macbook_pro/MacBook-Pro-16-2019/MacBook-Pro-16-Space-Gray-2019/MacBook-Pro-16-Space-Gray-00.webp",
                             InStock = true,
                             Name = "MacBook Pro 2019",
@@ -441,12 +441,10 @@ namespace OlxShop.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -483,12 +481,10 @@ namespace OlxShop.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");

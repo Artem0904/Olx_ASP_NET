@@ -6,7 +6,7 @@
     </div>
     <div class="card-body">
         <h5 class="card-title">Product List</h5>
-        
+
         <ul class="list-group">
             @foreach (var i in Model)
             {
@@ -16,7 +16,7 @@
                 </li>
             }
         </ul>
-            
+
         <div>
             <a asp-controller="Orders" asp-action="Create" class="btn btn-success mt-3">Confirm</a>
         </div>
