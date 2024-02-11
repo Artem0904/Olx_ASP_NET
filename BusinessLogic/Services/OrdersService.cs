@@ -22,12 +22,25 @@ namespace BusinessLogic.Services
 
         public void Create(string userId)
         {
-            throw new NotImplementedException();
+            var ids = cartService.GetProductIds();
+            var products = context.Products.Where(x => ids.Contains(x.Id)).ToList();
+
+            var order = new Order()
+            {
+                Date = DateTime.Now,
+                UserId = userId,
+                Products = products,
+                TotalPrice = products.Sum(x => x.Price),
+            };
+
+            context.Orders.Add(order);
+            context.SaveChanges();
         }
 
         public IEnumerable<OrderDto> GetAllByUser(string userId)
         {
-            throw new NotImplementedException();
+            var items = context.Orders.Include(x => x.Products).Where(x => x.UserId == userId).ToList();
+            return mapper.Map<IEnumerable<OrderDto>>(items);
         }
     }
 }

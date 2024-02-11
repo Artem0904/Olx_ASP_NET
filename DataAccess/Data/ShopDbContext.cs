@@ -11,6 +11,7 @@ namespace DataAccess.Data
         //public DbSet<ContactInfo> ContactInfos { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
         //public DbSet<User> Users { get; set; }
 
         public ShopDbContext(DbContextOptions options) : base(options) { }

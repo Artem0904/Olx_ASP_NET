@@ -20,6 +20,7 @@ namespace BusinessLogic.Profiles
             CreateMap<Product, ProductDto>();
 
             CreateMap<Category, CategoryDto>().ReverseMap();
+            CreateMap<Order, OrderDto>().ReverseMap();
         }
     }
 }

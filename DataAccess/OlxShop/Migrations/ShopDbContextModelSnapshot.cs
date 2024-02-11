@@ -185,7 +185,7 @@ namespace OlxShop.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Order");
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("DataAccess.Data.Entities.Product", b =>

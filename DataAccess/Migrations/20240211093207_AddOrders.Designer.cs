@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace OlxShop.Migrations
 {
     [DbContext(typeof(ShopDbContext))]
-    [Migration("20240207181248_AddOrder")]
-    partial class AddOrder
+    [Migration("20240211093207_AddOrders")]
+    partial class AddOrders
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -188,7 +188,7 @@ namespace OlxShop.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Order");
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("DataAccess.Data.Entities.Product", b =>
