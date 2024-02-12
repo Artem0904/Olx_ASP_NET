@@ -36,7 +36,7 @@ namespace OlxShop.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
 
                     b.HasData(
                         new
@@ -105,7 +105,7 @@ namespace OlxShop.Migrations
 
                     b.HasIndex("CountryId");
 
-                    b.ToTable("Cities");
+                    b.ToTable("Cities", (string)null);
 
                     b.HasData(
                         new
@@ -148,7 +148,7 @@ namespace OlxShop.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Countries");
+                    b.ToTable("Countries", (string)null);
 
                     b.HasData(
                         new
@@ -185,7 +185,7 @@ namespace OlxShop.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("DataAccess.Data.Entities.Product", b =>
@@ -202,8 +202,8 @@ namespace OlxShop.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Discount")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Discount")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
@@ -223,14 +223,14 @@ namespace OlxShop.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
 
                     b.HasData(
                         new
                         {
                             Id = 1,
                             CategoryId = 1,
-                            Discount = 10,
+                            Discount = 10m,
                             ImageUrl = "https://applecity.com.ua/image/cache/catalog/0iphone/ipohnex/iphone-x-black-1000x1000.png",
                             InStock = false,
                             Name = "iPhone X",
@@ -240,7 +240,7 @@ namespace OlxShop.Migrations
                         {
                             Id = 2,
                             CategoryId = 2,
-                            Discount = 0,
+                            Discount = 0m,
                             ImageUrl = "https://http2.mlstatic.com/D_NQ_NP_727192-CBT53879999753_022023-V.jpg",
                             InStock = false,
                             Name = "PowerBall",
@@ -250,7 +250,7 @@ namespace OlxShop.Migrations
                         {
                             Id = 3,
                             CategoryId = 3,
-                            Discount = 15,
+                            Discount = 15m,
                             ImageUrl = "https://www.seekpng.com/png/detail/316-3168852_nike-air-logo-t-shirt-nike-t-shirt.png",
                             InStock = true,
                             Name = "Nike T-Shirt",
@@ -260,7 +260,7 @@ namespace OlxShop.Migrations
                         {
                             Id = 4,
                             CategoryId = 1,
-                            Discount = 5,
+                            Discount = 5m,
                             ImageUrl = "https://sota.kh.ua/image/cache/data/Samsung-2/samsung-s23-s23plus-blk-01-700x700.webp",
                             InStock = true,
                             Name = "Samsung S23",
@@ -270,7 +270,7 @@ namespace OlxShop.Migrations
                         {
                             Id = 5,
                             CategoryId = 2,
-                            Discount = 0,
+                            Discount = 0m,
                             ImageUrl = "https://cdn.shopify.com/s/files/1/0046/1163/7320/products/69ee701e-e806-4c4d-b804-d53dc1f0e11a_grande.jpg",
                             InStock = false,
                             Name = "Air Ball",
@@ -280,7 +280,7 @@ namespace OlxShop.Migrations
                         {
                             Id = 6,
                             CategoryId = 1,
-                            Discount = 10,
+                            Discount = 10m,
                             ImageUrl = "https://newtime.ua/image/import/catalog/mac/macbook_pro/MacBook-Pro-16-2019/MacBook-Pro-16-Space-Gray-2019/MacBook-Pro-16-Space-Gray-00.webp",
                             InStock = true,
                             Name = "MacBook Pro 2019",
@@ -441,10 +441,12 @@ namespace OlxShop.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -481,10 +483,12 @@ namespace OlxShop.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -506,7 +510,7 @@ namespace OlxShop.Migrations
 
                     b.HasIndex("ProductsId");
 
-                    b.ToTable("OrderProduct");
+                    b.ToTable("OrderProduct", (string)null);
                 });
 
             modelBuilder.Entity("DataAccess.Data.Entities.User", b =>

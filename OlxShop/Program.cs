@@ -20,8 +20,6 @@ namespace OlxShop
             var builder = WebApplication.CreateBuilder(args);
             var connStr = builder.Configuration.GetConnectionString("LocalDb")!;
 
-            // Add services to the container.
-            // DI - Dependency Injection
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext(connStr);
 
@@ -61,7 +59,6 @@ namespace OlxShop
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 

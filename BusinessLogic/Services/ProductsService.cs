@@ -54,21 +54,6 @@ namespace BusinessLogic.Services
             // load related entity
             context.Entry(item).Reference(x => x.Category).Load();
 
-            // convert entity type to DTO
-            // 1 - using manually (handmade)
-            //var dto = new ProductDto()
-            //{
-            //    Id = product.Id,
-            //    CategoryId = product.CategoryId,
-            //    Description = product.Description,
-            //    Discount = product.Discount,
-            //    ImageUrl = product.ImageUrl,
-            //    InStock = product.InStock,
-            //    Name = product.Name,
-            //    Price = product.Price,
-            //    CategoryName = product.Category.Name
-            //};
-            // 2 - using AutoMapper
             var dto = mapper.Map<ProductDto>(item);
 
             return dto;
