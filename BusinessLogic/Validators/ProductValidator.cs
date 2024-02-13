@@ -31,6 +31,9 @@ namespace BusinessLogic.Validators
             RuleFor(x => x.ImageUrl)
                 .NotEmpty()
                 .Must(ValidatorsExtensions.LinkMustBeAUri).WithMessage("{PropertyName} must be a valid URL address.");
+
+            RuleFor(x => x.CityId)
+                .NotEmpty();
         }
     }
 }

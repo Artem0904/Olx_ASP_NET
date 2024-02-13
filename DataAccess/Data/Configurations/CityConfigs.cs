@@ -13,6 +13,7 @@ namespace DataAccess.Data.Configurations
 
             //builder.HasMany(x => x.ContactInfos).WithOne(x => x.City).HasForeignKey(x => x.CityId);
             builder.HasOne(x => x.Country).WithMany(x => x.Cities).HasForeignKey(x => x.CountryId);
+            builder.HasMany(x => x.Products).WithOne(x => x.City).HasForeignKey(x => x.CityId);
         }
     }
 }

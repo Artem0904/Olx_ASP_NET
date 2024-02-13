@@ -13,12 +13,13 @@ html {
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color: rgba(242,244,245,255);
 }
 
 .details-card .card-header {
@@ -37,14 +38,23 @@ body {
     object-fit: contain;
     border-radius: 10px;
 }
-.home-card{
-    width:100%;
+
+.home-card {
+    width: 100%;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 4fr 1fr;
+    justify-content: left;
 }
+
 .home-card img {
     height: 200px;
+    width: 200px;
     object-fit: contain;
-    padding: 8px;
+    margin: 8px;
     border-radius: 8px;
+    align-self: flex-start;
+    justify-content: left;
 }
 
 .home-card .card-title a {
@@ -57,6 +67,13 @@ body {
     text-decoration: underline;
 }
 
+.card-body {
+    display: grid;
+    grid-template-rows: 7fr 1fr;
+    grid-template-columns: 1fr;
+    text-align: left
+}
+
 .zoom {
     transition: .2s;
 }
@@ -65,12 +82,6 @@ body {
     transform: scale(3.2);
 }
 
-.card img {
-    width: 50%;
-    object-fit: contain;
-    margin: 20px;
-    border-radius: 10px;
-}
 
 #navBar {
     background-color: rgba(0,47,52,255);
@@ -83,6 +94,6 @@ body {
     height: 70px;
 }
 
-header {
-    margin-top: 0;
-}
+/*header nav div{
+    padding: 0 10%;
+}*/

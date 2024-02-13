@@ -2,24 +2,36 @@
 @model ProductDto;
 @inject ICartService cartService;
 
-@*<div class="card h-100 home-card">
-    <a asp-controller="Products" asp-action="Details" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path">
-        <img src="@Model.ImageUrl" class="card-img-top" alt="Product Image">
-    </a>
-    <div class="card-body">
-        <h5 class="card-title">
-            <a asp-controller="Products" asp-action="Details" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path">@Model.Name</a>
-        </h5>
-        <p class="card-text">
-            @Model.Price$
-            @if (Model.Discount > 0)
-            {
-                <span class="badge bg-danger">SALE</span>
-            }
-            <br />
-            @(Model.CategoryName ?? "category not loaded")
-        </p>
+<div class="mb-3 w-100 card">
+    <div class="row g-0 home-card w-100 ">
+        <a class="col-md-4" asp-controller="Products" asp-action="Details" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path">
+            <img src="@Model.ImageUrl" alt="Product Image">
+        </a>
+        <div class="col-md-8">
+            <div class="card-body text-left">
+                <div>
+                    <span class="card-title">
+                        <a asp-controller="Products" asp-action="Details" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path">@(Model.Name)</a>
+                    </span>
+                </div>
+                <div>
+                    <p class="card-text">
+                        @Model.CityName, 
+                        @Model.CountryName @* Need to fix country name in Product *@
+                    </p>
+                </div>
+            </div>
+        </div>
         <div>
+            <p class="card-text">
+                @Model.Price$
+                @if (Model.Discount > 0)
+                {
+                    <span class="badge bg-danger">SALE</span>
+                }
+                <br />
+                @(Model.CategoryName ?? "category not loaded")
+            </p>
             @if (cartService.IsExists(Model.Id))
             {
                 <a asp-controller="Cart" asp-action="Remove" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path" class="btn btn-secondary mb-1">Remove from Cart</a>
@@ -28,43 +40,6 @@
             {
                 <a asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path" class="btn btn-primary mb-1">Add to Cart</a>
             }
-            <button type="button" class="btn btn-success mb-1">Buy Now</button>
-        </div>
-    </div>
-</div>
-*@
-
-<div class="card mb-3 w-100">
-    <div class="row g-0 home-card w-100">
-        <a class="col-md-4" asp-controller="Products" asp-action="Details" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path">
-            <img src="@Model.ImageUrl" class="card-img-top" alt="Product Image">
-        </a>
-        <div class="col-md-8">
-            <div class="card-body">
-                <h5 class="card-title">
-                    <a asp-controller="Products" asp-action="Details" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path">@Model.Name</a>
-                </h5>
-                <p class="card-text">
-                    @Model.Price$
-                    @if (Model.Discount > 0)
-                    {
-                        <span class="badge bg-danger">SALE</span>
-                    }
-                    <br />
-                    @(Model.CategoryName ?? "category not loaded")
-                </p>
-                <div>
-                    @if (cartService.IsExists(Model.Id))
-            {
-                <a asp-controller="Cart" asp-action="Remove" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path" class="btn btn-secondary mb-1">Remove from Cart</a>
-            }
-            else
-            {
-                <a asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path" class="btn btn-primary mb-1">Add to Cart</a>
-            }
-                    <button type="button" class="btn btn-success mb-1">Buy Now</button>
-                </div>
-            </div>
         </div>
     </div>
 </div>

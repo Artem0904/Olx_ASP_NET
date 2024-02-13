@@ -55,19 +55,6 @@ namespace BusinessLogic.Services
             context.Entry(item).Reference(x => x.Category).Load();
 
             // convert entity type to DTO
-            // 1 - using manually (handmade)
-            //var dto = new ProductDto()
-            //{
-            //    Id = product.Id,
-            //    CategoryId = product.CategoryId,
-            //    Description = product.Description,
-            //    Discount = product.Discount,
-            //    ImageUrl = product.ImageUrl,
-            //    InStock = product.InStock,
-            //    Name = product.Name,
-            //    Price = product.Price,
-            //    CategoryName = product.Category.Name
-            //};
             // 2 - using AutoMapper
             var dto = mapper.Map<ProductDto>(item);
 
@@ -78,13 +65,15 @@ namespace BusinessLogic.Services
         {
             return mapper.Map<List<ProductDto>>(context.Products
                 .Include(x => x.Category)
+                .Include(x => x.City)
+                .Include(x => x.City.Country)
                 .Where(x => ids.Contains(x.Id))
                 .ToList());
         }
 
         public IEnumerable<ProductDto> GetAll()
         {
-            return mapper.Map<List<ProductDto>>(context.Products.Include(x => x.Category).ToList());
+            return mapper.Map<List<ProductDto>>(context.Products.Include(x => x.Category).Include(x => x.City).Include(x => x.City.Country).ToList());
         }
 
         public IEnumerable<CategoryDto> GetAllCategories()

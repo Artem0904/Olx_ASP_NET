@@ -12,7 +12,9 @@ namespace BusinessLogic.DTOs
         public bool InStock { get; set; }
         public string ImageUrl { get; set; }
         public string? CategoryName { get; set; }
-        //public int? UserId { get; set; }
-        //public string? UserName { get; set; }   ////TODO: User Name is required! NOT NULL
+        public string? CityName { get; set; }
+        public int CityId { get; set; }
+        public string? CountryName { get; set; }
+        public int Country { get; set; }
     }
 }  
