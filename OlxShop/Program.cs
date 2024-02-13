@@ -8,6 +8,7 @@ using BusinessLogic.Extensions;
 using BusinessLogic.Interfaces;
 using OlxShop.Services;
 using Microsoft.AspNetCore.Identity;
+using DataAccess.Data.Entities;
 
 namespace OlxShop
 {
@@ -23,7 +24,7 @@ namespace OlxShop
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext(connStr);
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ShopDbContext>();
 
             builder.Services.AddAutoMapper();

@@ -26,7 +26,7 @@ namespace BusinessLogic.Extensions
         public static void AddCustomServices(this IServiceCollection services)
         {
             services.AddScoped<IProductsService, ProductsService>();
-            // others...
+            services.AddScoped<IOrdersService, OrdersService>();
         }
     }
 }

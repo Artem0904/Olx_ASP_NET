@@ -4,13 +4,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Data
 {
-    public class ShopDbContext : IdentityDbContext
+    public class ShopDbContext : IdentityDbContext<User>
     {
         public DbSet<Category> Categories { get; set; }
         public DbSet<City> Cities { get; set; }
         //public DbSet<ContactInfo> ContactInfos { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
         //public DbSet<User> Users { get; set; }
 
         public ShopDbContext(DbContextOptions options) : base(options) { }

@@ -60,5 +60,10 @@ namespace OlxShop.Services
         {
             return GetCartItems().Contains(id);
         }
+
+        public IEnumerable<int> GetProductIds()
+        {
+            return GetCartItems();
+        }
     }
 }
