@@ -18,8 +18,8 @@ namespace BusinessLogic.Validators
                 .MinimumLength(2)
                 .Matches("[A-Z].*").WithMessage("{PropertyName} must starts with uppercase letter.");
 
-            RuleFor(x => x.CountryId)
-                .NotEmpty();
+            //RuleFor(x => x.CountryId)
+            //    .NotEmpty();
         }
     }
 }

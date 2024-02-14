@@ -12,11 +12,13 @@ namespace OlxShop.Controllers
     public class ProductsController : Controller
     {
         private readonly IProductsService productsService;
+        private readonly ICityService cityService;
         private readonly IMapper mapper;
 
-        public ProductsController(IProductsService productsService, IMapper mapper)
+        public ProductsController(IProductsService productsService, ICityService cityService, IMapper mapper)
         {
             this.productsService = productsService;
+            this.cityService = cityService; 
             this.mapper = mapper;
         }
 
@@ -45,10 +47,22 @@ namespace OlxShop.Controllers
         public IActionResult Create(ProductDto model)
         {
             // model validation
-            if (!ModelState.IsValid)
+            //if (!ModelState.IsValid)
+            //{
+            //    LoadCategories();
+            //    return View();
+            //}
+
+            var city = cityService.GetCityByName(model.CityName);
+            if (city != null)
             {
-                LoadCategories();
-                return View();
+                model.CityId = city.Id;
+            }
+            else
+            {
+                var newCityDto = new CityDto { Name = model.CityName };
+                cityService.CreateCity(newCityDto);
+                model.CityId = newCityDto.Id;
             }
 
             productsService.Create(model);

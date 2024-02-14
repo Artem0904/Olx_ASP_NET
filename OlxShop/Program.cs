@@ -6,6 +6,7 @@ using DataAccess.Data;
 using DataAccess;
 using BusinessLogic.Extensions;
 using BusinessLogic.Interfaces;
+using BusinessLogic.Services;
 using OlxShop.Services;
 using Microsoft.AspNetCore.Identity;
 using DataAccess.Data.Entities;
@@ -32,6 +33,7 @@ namespace OlxShop
 
             builder.Services.AddCustomServices();
             builder.Services.AddScoped<ICartService, CartService>();
+            builder.Services.AddScoped<ICityService, CityService>();
 
             builder.Services.AddDistributedMemoryCache();
 

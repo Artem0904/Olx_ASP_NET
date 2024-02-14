@@ -8,7 +8,7 @@
             <img src="@Model.ImageUrl" alt="Product Image">
         </a>
         <div class="col-md-8">
-            <div class="card-body text-left">
+            <div class="card-container text-left">
                 <div>
                     <span class="card-title">
                         <a asp-controller="Products" asp-action="Details" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path">@(Model.Name)</a>
@@ -16,18 +16,22 @@
                 </div>
                 <div>
                     <p class="card-text">
-                        @Model.CityName, 
-                        @Model.CountryName @* Need to fix country name in Product *@
+                        City: @(Model.CityName ?? "City not loaded")
+                        @* @Model.CountryName @* Need to fix country name in Product *@
                     </p>
                 </div>
             </div>
         </div>
-        <div>
+        <div class="card-container price-like">
             <p class="card-text">
-                @Model.Price$
                 @if (Model.Discount > 0)
                 {
-                    <span class="badge bg-danger">SALE</span>
+                    <span>@(Model.Price - (Model.Price * Model.Discount / 100))$/</span>
+                    <span class="text-decoration-line-through">@Model.Price$</span>
+                }
+                else
+                {
+                    <span>@Model.Price$</span>
                 }
                 <br />
                 @(Model.CategoryName ?? "category not loaded")

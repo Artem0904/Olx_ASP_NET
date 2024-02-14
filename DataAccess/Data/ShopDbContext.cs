@@ -31,10 +31,10 @@ namespace DataAccess.Data
             });
             modelBuilder.Entity<City>().HasData(new[] 
             {
-                new City() { Id = 1, Name = "Rivne", CountryId = 1},
-                new City() { Id = 2, Name = "Kiev", CountryId = 1},
-                new City() { Id = 3, Name = "Lviv", CountryId = 1},
-                new City() { Id = 4, Name = "Paris", CountryId = 2}
+                new City() { Id = 1, Name = "Rivne"/*, CountryId = 1*/},
+                new City() { Id = 2, Name = "Kiev" /*, CountryId = 1*/},
+                new City() { Id = 3, Name = "Lviv" /*, CountryId = 1*/},
+                new City() { Id = 4, Name = "Paris"/*, CountryId = 2*/}
             });
 
             modelBuilder.Entity<Country>().HasData(new[]

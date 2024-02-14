@@ -24,6 +24,7 @@ namespace BusinessLogic.Profiles
 
 
             CreateMap<Order, OrderDto>().ReverseMap();
+            CreateMap<City, CityDto>().ReverseMap();
         }
     }
 }

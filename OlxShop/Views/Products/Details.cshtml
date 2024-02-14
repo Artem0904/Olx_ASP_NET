@@ -2,37 +2,39 @@
 @model ProductDto;
 @inject ICartService cartService;
 
-<div class="card text-center details-card">
-    <h5 class="card-header">
-        <a href="@ViewBag.ReturnUrl" class="btn btn-dark">
-            <i class="bi bi-arrow-left"></i>
-        </a>
-        <span>Product Information</span>
-    </h5>
-    <div class="card-body">
-        @if (Model.Discount > 0)
-        {
+<div id="details">
+    <div class="card text-center details-card">
+        <h5 class="card-header">
+            <a href="@ViewBag.ReturnUrl" class="btn btn-dark">
+                <i class="bi bi-arrow-left"></i>
+            </a>
+            <span>Product Information</span>
+        </h5>
+        <div class="card-body">
+            @if (Model.Discount > 0)
+            {
+                <div>
+                    <span class="badge bg-primary">SALE</span>
+                </div>
+            }
+            <h5 class="card-title fs-1">@Model.Name</h5>
+            <p class="card-text fs-4">@Model.Price$ - @Model.CategoryName</p>
             <div>
-                <span class="badge bg-primary">SALE</span>
+                @* TODO: optimize sending request using JS *@
+                @if(cartService.IsExists(Model.Id))
+                {
+                    <a asp-controller="Cart" asp-action="Remove" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path" class="btn btn-secondary">Remove from Cart</a>
+                }
+                else
+                {
+                    <a asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path" class="btn btn-primary">Add to Cart</a>
+                }
+                <a href="#" class="btn btn-success my-3">Buy</a>
             </div>
-        }
-        <h5 class="card-title fs-1">@Model.Name</h5>
-        <p class="card-text fs-4">@Model.Price$ - @Model.CategoryName</p>
-        <div>
-            @* TODO: optimize sending request using JS *@
-            @if(cartService.IsExists(Model.Id))
-            {
-                <a asp-controller="Cart" asp-action="Remove" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path" class="btn btn-secondary">Remove from Cart</a>
-            }
-            else
-            {
-                <a asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path" class="btn btn-primary">Add to Cart</a>
-            }
-            <a href="#" class="btn btn-success my-3">Buy</a>
+            <div class="image-block">
+                <img src="@Model.ImageUrl" alt="Product Image" />
+            </div>
+            <p class="card-text">@Model.Description</p>
         </div>
-        <div class="image-block">
-            <img src="@Model.ImageUrl" alt="Product Image" />
-        </div>
-        <p class="card-text">@Model.Description</p>
     </div>
 </div>
