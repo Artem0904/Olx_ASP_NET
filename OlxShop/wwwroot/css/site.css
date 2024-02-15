@@ -42,19 +42,20 @@ body {
 #home .home-card {
     width: 100%;
     display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-rows: 10em;
+    grid-template-columns: 1fr 7fr 1fr;
     justify-content: left;
 }
 
 #home .home-card img {
-    height: 200px;
-    width: 200px;
+    height: 140px;
+    width: 140px;
     object-fit: contain;
     margin: 8px;
     border-radius: 8px;
     align-self: flex-start;
     justify-content: left;
+    border: 1px solid black;
 }
 
 #home .home-card .card-title a {
@@ -66,17 +67,29 @@ body {
     color: darkgray;
     text-decoration: underline;
 }
-
+    
 #home .card-container {
     display: grid;
-    grid-template-rows: 7fr 1fr;
+    grid-template-rows: 5fr 1fr;
     grid-template-columns: 1fr;
-    text-align: left
-}
-#home .price-like {
-    text-align: center;
+    text-align: left;
+    border: 1px solid black;
 }
 
+#home .price-like {
+    grid-template-rows: 4fr 1fr;
+    text-align: center; 
+}
+
+#home .price-like .like{
+    text-align: right;
+    padding-right: 16px;
+}
+
+#home .price-like .like a{
+    width: 30px;
+    height: 30px;
+}
 
 
 .zoom {
@@ -98,6 +111,7 @@ body {
     object-fit: contain;
     height: 70px;
 }
+
 
 /*header nav div{
     padding: 0 10%;
