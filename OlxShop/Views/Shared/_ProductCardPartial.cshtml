@@ -38,11 +38,17 @@
                     @(Model.CategoryName ?? "category not loaded")
                 </p>
                 <div class="like">
-                    @if (cartService.IsExists(Model.Id)) {
-                        <a asp-controller="Cart" asp-action="Remove" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path" class="bi bi-heart-fill mb-1 text-black text-end"></a>
+                    @if (cartService.IsExists(Model.Id))
+                    {
+                        <a asp-controller="Cart" asp-action="Remove" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path" class="fs-4">
+                            <div class="bi bi-heart-fill mb-1 text-black text-end"></div>
+                        </a>
                     }
-                    else {
-                        <a asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path" class="bi bi-heart mb-1 text-black"></a>
+                    else
+                    {
+                        <a asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path" class="fs-4">
+                            <div class="bi bi-heart mb-1 text-black text-end"></div>
+                        </a>
                     }
                 </div>
             </div>

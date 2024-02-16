@@ -22,24 +22,47 @@ body {
     background-color: rgba(242,244,245,255);
 }
 
-.details-card .card-header {
+#details{
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+#details .details-card > div {
+    padding: 16px;
+    border: 1px solid;
+    gap: 25px;
+}
+
+#details .details-card .card-header {   
     display: grid;
     grid-template-columns: 40px 1fr 40px;
     align-items: center;
 }
 
-.details-card .image-block {
-    margin: 16px;
+#details .details-card .image-block {
+    height: 100%;
+    border: 1px solid;
 }
 
-.details-card img {
-    max-width: 330px;
-    width: 100%;
+#details .details-card img {
+    height: 600px;
     object-fit: contain;
     border-radius: 10px;
+    border: 1px solid;
 }
 
-#default{
+#details .main-info {
+    border: 1px solid;
+    width:100%;
+}
+
+#details .like {
+    text-align: right;
+}
+
+
+
+#default {
     border: none;
 }
 #default .home-card {

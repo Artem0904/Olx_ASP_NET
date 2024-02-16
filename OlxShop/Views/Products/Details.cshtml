@@ -3,8 +3,62 @@
 @inject ICartService cartService;
 
 <div id="details">
-    <div class="card text-center details-card">
+    <div class="card  details-card">
         <h5 class="card-header">
+            <a href="@ViewBag.ReturnUrl" class="btn btn-dark">
+                <i class="bi bi-arrow-left"></i>
+            </a>
+            <span>Product Information</span>
+        </h5>
+        <div class="d-flex flex-row">
+            <div class="image-block">
+                <img src="@Model.ImageUrl" alt="Product Image" />
+            </div>
+            <div class="main-info d-flex flex-column g-1">
+                <div>
+                    @* TODO: optimize sending request using JS *@
+                    <div class="like">
+                        @if (cartService.IsExists(Model.Id))
+                        {
+                            <a asp-controller="Cart" asp-action="Remove" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path" class="fs-3">
+                                <div class="bi bi-heart-fill mb-1 text-black text-end"></div>
+                            </a>
+                        }
+                        else
+                        {
+                            <a asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path" class="fs-3">
+                                <div class="bi bi-heart mb-1 text-black text-end"></div>
+                            </a>
+                        }
+                    </div>
+                    <a href="#" class="btn btn-success my-3">Buy</a>
+                    </div>
+                <h5 class="card-title fs-1">@Model.Name</h5>
+                @if (Model.Discount > 0)
+                {
+                    <div>
+                        <span class="fs-4">@(Model.Price - (Model.Price * Model.Discount / 100))$</span>
+                        <span class="fs-4 text-decoration-line-through">@Model.Price$</span>
+                    </div>
+                }
+                else
+                {
+                    <span class="fs-4">@Model.Price$</span>
+                }
+                <br />
+                <span class="fs-4">
+                    @(Model.CategoryName ?? "category not loaded")
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@* 
+    <div id="details">
+    <div class="card text-danger details-card">
+         <h5 class="card-header">
             <a href="@ViewBag.ReturnUrl" class="btn btn-dark">
                 <i class="bi bi-arrow-left"></i>
             </a>
@@ -14,15 +68,16 @@
             @if (Model.Discount > 0)
             {
                 <div>
-                    <span class="badge bg-primary">SALE</span>
+                    <span class="fs-4 badge bg-primary">SALE</span>
                 </div>
             }
             <h5 class="card-title fs-1">@Model.Name</h5>
-            @* <p class="card-text fs-4">@Model.Price$ - @Model.CategoryName</p> *@
             @if (Model.Discount > 0)
             {
-                <span class="fs-4">@(Model.Price - (Model.Price * Model.Discount / 100))$</span>
-                <span class="fs-4 text-decoration-line-through">@Model.Price$</span>
+                <div> 
+                    <span class="fs-4">@(Model.Price - (Model.Price * Model.Discount / 100))$</span>
+                    <span class="fs-4 text-decoration-line-through">@Model.Price$</span>
+                </div>
             }
             else
             {
@@ -33,7 +88,7 @@
                 @(Model.CategoryName ?? "category not loaded")
             </span>
             <div>
-                @* TODO: optimize sending request using JS *@
+                @* TODO: optimize sending request using JS * @
                 @if(cartService.IsExists(Model.Id))
                 {
                     <a asp-controller="Cart" asp-action="Remove" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path" class="btn btn-secondary">Remove from Cart</a>
@@ -48,6 +103,7 @@
                 <img src="@Model.ImageUrl" alt="Product Image" />
             </div>
             <p class="card-text">@Model.Description</p>
-        </div>
+        </div> 
     </div>
-</div>
+</div> 
+*@
