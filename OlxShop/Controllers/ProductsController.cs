@@ -6,9 +6,11 @@ using Microsoft.EntityFrameworkCore;
 using DataAccess.Data;
 using DataAccess.Data.Entities;
 using BusinessLogic.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace OlxShop.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ProductsController : Controller
     {
         private readonly IProductsService productsService;
@@ -31,6 +33,7 @@ namespace OlxShop.Controllers
             ViewBag.Categories = new SelectList(categories, nameof(Category.Id), nameof(Category.Name));
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             // get all products from the db
@@ -47,11 +50,11 @@ namespace OlxShop.Controllers
         public IActionResult Create(ProductDto model)
         {
             // model validation
-            //if (!ModelState.IsValid)
-            //{
-            //    LoadCategories();
-            //    return View();
-            //}
+            if (!ModelState.IsValid)
+            {
+                LoadCategories();
+                return View();
+            }
 
             var city = cityService.GetCityByName(model.CityName);
             if (city != null)
@@ -109,6 +112,7 @@ namespace OlxShop.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [AllowAnonymous]
         public IActionResult Details(int id, string? returnUrl)
         {
             // get product by ID from the db

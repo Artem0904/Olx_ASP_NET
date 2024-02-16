@@ -21,7 +21,7 @@ namespace BusinessLogic.Validators
                 .GreaterThanOrEqualTo(0).WithMessage("{PropertyName} can not be negative.");
 
             RuleFor(x => x.Discount)
-                .NotEmpty()
+                .NotNull()
                 .GreaterThanOrEqualTo(0).WithMessage("{PropertyName} can not be negative.");
 
             RuleFor(x => x.Description)
@@ -32,8 +32,13 @@ namespace BusinessLogic.Validators
                 .NotEmpty()
                 .Must(ValidatorsExtensions.LinkMustBeAUri).WithMessage("{PropertyName} must be a valid URL address.");
 
-            RuleFor(x => x.CityId)
-                .NotEmpty();
+            RuleFor(x => x.CityName)
+                .NotEmpty()
+                .MinimumLength(2)
+                .Matches("[A-Z].*").WithMessage("{PropertyName} must starts with uppercase letter.");
+
+            //RuleFor(x => x.CityId)
+            //    .NotEmpty();
         }
     }
 }

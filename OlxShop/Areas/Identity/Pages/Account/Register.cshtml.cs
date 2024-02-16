@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
@@ -19,6 +20,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using OlxShop.Helpers;
 
 namespace OlxShop.Areas.Identity.Pages.Account
 {
@@ -103,6 +105,9 @@ namespace OlxShop.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Display(Name = "Admin User")]
+            public bool AdminUser { get; set; }
         }
 
 
@@ -129,6 +134,11 @@ namespace OlxShop.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+
+                    if (User.IsInRole("Admin") && Input.AdminUser)
+                        await _userManager.AddToRoleAsync(user, Roles.Admin.ToString());
+                    else
+                        await _userManager.AddToRoleAsync(user, Roles.User.ToString());
 
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
