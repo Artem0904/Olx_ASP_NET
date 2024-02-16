@@ -89,8 +89,20 @@ namespace OlxShop.Controllers
                     .Select(e => e.ErrorMessage)
                     .ToList();
 
-                ViewBag.ErrorMessages = errorMessages;  
+                ViewBag.ErrorMessages = errorMessages;
                 return View(model);
+            }
+
+            var city = cityService.GetCityByName(model.CityName);
+            if (city != null)
+            {
+                model.CityId = city.Id;
+            }
+            else
+            {
+                var newCityDto = new CityDto { Name = model.CityName };
+                cityService.CreateCity(newCityDto);
+                model.CityId = newCityDto.Id;
             }
 
             productsService.Edit(model);

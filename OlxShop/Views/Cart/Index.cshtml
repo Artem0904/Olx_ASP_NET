@@ -10,9 +10,10 @@
         <ul class="list-group">
             @foreach (var i in Model)
             {
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    @i.Name - @i.CategoryName
-                    <span class="badge bg-primary rounded-pill">@i.Price$</span>
+                <li id="default" class="list-group-item d-flex justify-content-between align-items-center">
+                    @* @i.Name - @i.CategoryName
+                    <span class="badge bg-primary rounded-pill">@i.Price$</span> *@
+                    <partial name="_ProductCardPartial" model="@i" />
                 </li>
             }
         </ul>

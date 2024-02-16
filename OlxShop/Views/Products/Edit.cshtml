@@ -44,7 +44,11 @@
         <textarea asp-for=Description class="form-control" rows="3" placeholder="Enter description"></textarea>
         <span asp-validation-for="Description" class="form-text text-danger"></span>
     </div>
-
+    <div class="col-md-4">
+        <label asp-for="CityName" class="form-label">City</label>
+        <input asp-for="CityName" type="text" class="form-control" placeholder="Enter CityName">
+        <span asp-validation-for="CityName" class="form-text text-danger"></span>
+    </div>
     <div class="col-12">
         <div class="form-check">
             <input asp-for=InStock class="form-check-input" type="checkbox">

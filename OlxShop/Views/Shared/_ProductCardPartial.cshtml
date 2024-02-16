@@ -27,7 +27,7 @@
                 <p class="card-text">
                     @if (Model.Discount > 0)
                     {
-                        <span>@(Model.Price - (Model.Price * Model.Discount / 100))$/</span>
+                        <span>@(Model.Price - (Model.Price * Model.Discount / 100))$</span>
                         <span class="text-decoration-line-through">@Model.Price$</span>
                     }
                     else

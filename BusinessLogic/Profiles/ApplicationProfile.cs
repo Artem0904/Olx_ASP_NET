@@ -14,15 +14,12 @@ namespace BusinessLogic.Profiles
         public ApplicationProfile()
         {
             CreateMap<ProductDto, Product>()
-                .ForMember(x => x.Category, opt => opt.Ignore());
-            CreateMap<ProductDto, Product>()
+                .ForMember(x => x.Category, opt => opt.Ignore())
                 .ForMember(x => x.City, opt => opt.Ignore());
+
             CreateMap<Product, ProductDto>();
 
-
             CreateMap<Category, CategoryDto>().ReverseMap();
-
-
             CreateMap<Order, OrderDto>().ReverseMap();
             CreateMap<City, CityDto>().ReverseMap();
         }

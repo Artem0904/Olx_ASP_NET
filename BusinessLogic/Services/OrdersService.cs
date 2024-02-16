@@ -25,12 +25,20 @@ namespace BusinessLogic.Services
             var ids = cartService.GetProductIds();
             var products = context.Products.Where(x => ids.Contains(x.Id)).ToList();
 
+            decimal TotalPrice = 0;
+            foreach (var item in products)
+            {
+                if(item.Discount > 0)
+                    TotalPrice += item.Price - (item.Price * item.Discount / 100);
+                else
+                    TotalPrice += item.Price;
+            }
             var order = new Order()
             {
                 Date = DateTime.Now,
                 UserId = userId,
                 Products = products,
-                TotalPrice = products.Sum(x => x.Price),
+                TotalPrice = TotalPrice,
             };
 
             context.Orders.Add(order);

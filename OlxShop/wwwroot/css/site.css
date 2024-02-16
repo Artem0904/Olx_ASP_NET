@@ -39,7 +39,10 @@ body {
     border-radius: 10px;
 }
 
-#home .home-card {
+#default{
+    border: none;
+}
+#default .home-card {
     width: 100%;
     display: grid;
     grid-template-rows: 10em;
@@ -47,7 +50,7 @@ body {
     justify-content: left;
 }
 
-#home .home-card img {
+#default .home-card img {
     height: 140px;
     width: 140px;
     object-fit: contain;
@@ -55,42 +58,43 @@ body {
     border-radius: 8px;
     align-self: flex-start;
     justify-content: left;
-    border: 1px solid black;
 }
 
-#home .home-card .card-title a {
+#default .home-card .card-title a {
     color: black;
     text-decoration: none;
 }
 
-#home .home-card .card-title a:hover {
+#default .home-card .card-title a:hover {
     color: darkgray;
     text-decoration: underline;
 }
     
-#home .card-container {
+#default .card-container {
     display: grid;
     grid-template-rows: 5fr 1fr;
     grid-template-columns: 1fr;
     text-align: left;
-    border: 1px solid black;
 }
 
-#home .price-like {
+#default .price-like {
     grid-template-rows: 4fr 1fr;
     text-align: center; 
 }
 
-#home .price-like .like{
+#default .price-like .like{
     text-align: right;
     padding-right: 16px;
 }
 
-#home .price-like .like a{
+#default .price-like .like a{
     width: 30px;
     height: 30px;
 }
 
+#default p.card-text{
+    display: block;
+}
 
 .zoom {
     transition: .2s;

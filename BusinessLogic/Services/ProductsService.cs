@@ -28,23 +28,21 @@ namespace BusinessLogic.Services
 
         public void Create(ProductDto product)
         {
-            var entity = mapper.Map<Product>(product);
+            var newProduct = mapper.Map<Product>(product);
 
-            // If the city name is provided, try to get the city from the database or create a new one
             if (!string.IsNullOrEmpty(product.CityName))
             {
                 var city = cityService.GetCityByName(product.CityName);
                 if (city == null)
                 {
-                    // If the city doesn't exist, create a new one
                     var newCityDto = new CityDto { Name = product.CityName };
                     cityService.CreateCity(newCityDto);
-                    city = cityService.GetCityByName(product.CityName); // Retrieve the newly created city
+                    city = cityService.GetCityByName(product.CityName); 
                 }
-                entity.CityId = city.Id; // Set the city Id for the product entity
+                newProduct.CityId = city.Id;
             }
 
-            context.Products.Add(entity);
+            context.Products.Add(newProduct);
             context.SaveChanges();
         }
 
@@ -61,6 +59,18 @@ namespace BusinessLogic.Services
 
         public void Edit(ProductDto product)
         {
+            if (!string.IsNullOrEmpty(product.CityName))
+            {
+                var city = cityService.GetCityByName(product.CityName);
+                if (city == null)
+                {
+                    var newCityDto = new CityDto { Name = product.CityName };
+                    cityService.CreateCity(newCityDto);
+                    city = cityService.GetCityByName(product.CityName);
+                }
+                product.CityId = city.Id;
+            }
+
             context.Products.Update(mapper.Map<Product>(product));
             context.SaveChanges();
         }

@@ -18,7 +18,20 @@
                 </div>
             }
             <h5 class="card-title fs-1">@Model.Name</h5>
-            <p class="card-text fs-4">@Model.Price$ - @Model.CategoryName</p>
+            @* <p class="card-text fs-4">@Model.Price$ - @Model.CategoryName</p> *@
+            @if (Model.Discount > 0)
+            {
+                <span class="fs-4">@(Model.Price - (Model.Price * Model.Discount / 100))$</span>
+                <span class="fs-4 text-decoration-line-through">@Model.Price$</span>
+            }
+            else
+            {
+                <span class="fs-4">@Model.Price$</span>
+            }
+            <br />
+            <span class="fs-4">
+                @(Model.CategoryName ?? "category not loaded")
+            </span>
             <div>
                 @* TODO: optimize sending request using JS *@
                 @if(cartService.IsExists(Model.Id))
