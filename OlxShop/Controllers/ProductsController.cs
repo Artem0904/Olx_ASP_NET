@@ -47,7 +47,7 @@ namespace OlxShop.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(ProductDto model)
+        public IActionResult Create(CreateProductModel model)
         {
             // model validation
             if (!ModelState.IsValid)

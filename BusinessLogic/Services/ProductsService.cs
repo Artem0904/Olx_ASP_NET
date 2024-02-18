@@ -26,7 +26,7 @@ namespace BusinessLogic.Services
             this.cityService = cityService;
         }
 
-        public void Create(ProductDto product)
+        public void Create(CreateProductModel product)
         {
             var newProduct = mapper.Map<Product>(product);
 
