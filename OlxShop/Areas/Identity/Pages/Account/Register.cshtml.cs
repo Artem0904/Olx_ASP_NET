@@ -92,6 +92,11 @@ namespace OlxShop.Areas.Identity.Pages.Account
             [Display(Name = "Birthdate")]
             public DateTime Birthdate { get; set; }
 
+            [Required]
+            [DataType(DataType.Date)]
+            [Display(Name = "Registerdate")]
+            public DateTime Registerdate { get; set; }
+
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -132,8 +137,8 @@ namespace OlxShop.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-                user.Birthdate = Input.Birthdate;
                 user.PhoneNumber = Input.PhoneNumber;
+                user.Registerdate = DateTime.Now.Date;
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
 

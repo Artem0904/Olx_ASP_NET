@@ -31,6 +31,7 @@ namespace OlxShop.Areas.Identity.Pages.Account.Manage
         ///     directly from your code. This API may change or be removed in future releases.
         /// </summary>
         public string Username { get; set; }
+        public DateTime Registerdate { get; set; }
 
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -64,6 +65,11 @@ namespace OlxShop.Areas.Identity.Pages.Account.Manage
             [DataType(DataType.Date)]
             [Display(Name = "Birthdate")]
             public DateTime Birthdate { get; set; }
+
+            [Required]
+            [DataType(DataType.Date)]
+            [Display(Name = "Registerdate")]
+            public DateTime Registerdate { get; set; } 
         }
 
         private async Task LoadAsync(User user)
@@ -76,7 +82,8 @@ namespace OlxShop.Areas.Identity.Pages.Account.Manage
             Input = new InputModel
             {
                 PhoneNumber = phoneNumber,
-                Birthdate = user.Birthdate
+                Birthdate = user.Birthdate,
+                Registerdate = user.Registerdate
             };
         }
 
@@ -125,7 +132,7 @@ namespace OlxShop.Areas.Identity.Pages.Account.Manage
 
                 if (!result.Succeeded)
                 {
-                    StatusMessage = "Unexpected error when trying to set phone number.";
+                    StatusMessage = "Unexpected error when trying to set birthdate.";
                     return RedirectToPage();
                 }
             }
