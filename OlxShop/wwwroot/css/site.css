@@ -22,48 +22,176 @@ body {
     background-color: rgba(242,244,245,255);
 }
 
+
+
 #details{
     width: 80%;
     margin-left: 10%;
     margin-right: 10%;
 }
-#details .details-card > div {
-    padding: 16px;
-    border: 1px solid;
-    gap: 25px;
+
+#details .border-radius{
+    border-radius: 7px;
 }
+
+#details .details-card {
+    background-color: rgba(242,244,245,255);
+}
+
 
 #details .details-card .card-header {   
     display: grid;
     grid-template-columns: 40px 1fr 40px;
     align-items: center;
+    border: none;
+    background-color: rgba(242,244,245,255);
+}
+
+#details .details-card>div{
+    padding: 16px;
+    border: 1px solid black;
+    gap: 25px;
+    flex-wrap: wrap;
 }
 
 #details .details-card .image-block {
-    height: 100%;
+    width: 52.5%;
     border: 1px solid;
+    padding: 25px;
+    background-color: white;
 }
 
 #details .details-card img {
-    height: 600px;
+    width: 100%;
     object-fit: contain;
     border-radius: 10px;
     border: 1px solid;
 }
 
+#details .descriptionBlock{
+    width: 52.5%;
+    border: 1px solid;
+    padding: 25px;
+    background-color: white;
+}
+#details .descriptionBlock .description{
+    font-family: Arial, Helvetica, sans-serif;
+}
+#details .descriptionBlock .text-center{
+    font-size: 15px;
+}
 #details .main-info {
     border: 1px solid;
-    width:100%;
+    width: 45%;
+    height: auto;
+    padding: 15px;
+    background-color: white;
+    box-sizing: border-box;
+}
+
+#details .card-title {
+    font-size: 20px;
+}
+#details div.price{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+}
+
+#details .time-and-like{
+    display: flex;
+    justify-content: space-between;
 }
 
 #details .like {
     text-align: right;
 }
 
+#details .btn{
+    width: 100%;
+    font-weight: bold;
+}
+
+#details .darkBtn {
+    background-color: rgba(0,47,52,255);
+    border: 4px solid rgba(0,47,52,255);
+    color: white;
+}
+
+#details .darkBtn:hover {
+    background-color: white;
+    color: rgba(0,47,52,255);
+}
+
+#details .contactBtn {
+    background-color: white;
+    border: 2px solid rgba(0,47,52,255);
+    color: rgba(0,47,52,255);
+    box-sizing: border-box;
+}
+
+#details .contactBtn:hover {
+    border: 4px solid rgba(0,47,52,255);  
+}
+
+#details .contactInfoBlock{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 15px;
+}
+#details .contactInfoBlock .contact-header{
+    display: flex;
+    justify-content: space-between;
+}
+#details .contactInfoBlock .contact-header span{
+    font-weight: bold;
+}
+#details .contactInfoBlock .contact-header .darkBtn{
+    width: 25%;
+}
+
+#details .contactInfo{
+    display: flex;
+    justify-content: space-between;
+}
+
+#details .contactInfo>div {
+    display: flex;
+    gap: 10px;
+}
+
+#details .contactInfo .otherInfo{
+    display: flex;
+    flex-direction: column;
+}
+
+#details .contactInfo .avatar{
+    width: 10%;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #default {
     border: none;
+}
+#default .card{
+    width: 90%;
 }
 #default .home-card {
     width: 100%;
@@ -108,11 +236,6 @@ body {
 #default .price-like .like{
     text-align: right;
     padding-right: 16px;
-}
-
-#default .price-like .like a{
-    width: 30px;
-    height: 30px;
 }
 
 #default p.card-text{

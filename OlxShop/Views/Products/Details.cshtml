@@ -3,19 +3,22 @@
 @inject ICartService cartService;
 
 <div id="details">
-    <div class="card  details-card">
+    <div class="card details-card">
         <h5 class="card-header">
             <a href="@ViewBag.ReturnUrl" class="btn btn-dark">
                 <i class="bi bi-arrow-left"></i>
             </a>
-            <span>Product Information</span>
+            <span class="text-center">Product Information</span>
         </h5>
         <div class="d-flex flex-row">
-            <div class="image-block">
+            <div class="image-block border-radius">
                 <img src="@Model.ImageUrl" alt="Product Image" />
             </div>
-            <div class="main-info d-flex flex-column g-1">
-                <div>
+            <div class="main-info d-flex flex-column border-radius">
+                <div class="time-and-like">
+                    <div>
+                        TIME 
+                    </div>
                     @* TODO: optimize sending request using JS *@
                     <div class="like">
                         @if (cartService.IsExists(Model.Id))
@@ -31,79 +34,72 @@
                             </a>
                         }
                     </div>
-                    <a href="#" class="btn btn-success my-3">Buy</a>
-                    </div>
-                <h5 class="card-title fs-1">@Model.Name</h5>
-                @if (Model.Discount > 0)
-                {
-                    <div>
-                        <span class="fs-4">@(Model.Price - (Model.Price * Model.Discount / 100))$</span>
-                        <span class="fs-4 text-decoration-line-through">@Model.Price$</span>
-                    </div>
-                }
-                else
-                {
-                    <span class="fs-4">@Model.Price$</span>
-                }
-                <br />
-                <span class="fs-4">
-                    @(Model.CategoryName ?? "category not loaded")
-                </span>
+                </div>
+                <div class="d-flex flex-column">
+                    <span class="card-title">@Model.Name</span>
+                    <span class="fs-0">@(Model.CategoryName ?? "category not loaded")</span>
+                    @if (Model.Discount > 0)
+                    {
+                        <div class="price">
+                            <h5 class="fs-4 ">@(Model.Price - (Model.Price * Model.Discount / 100))$</h5>
+                            <h5 class="fs-4 text-decoration-line-through">@Model.Price$</h5>
+                        </div>
+                    }
+                    else
+                    {
+                        <h5 class="fs-4">@Model.Price$</h5>
+                    }
+                    <br />
+                    <a href="#" class="btn mb-1 contactBtn">Message</a>
+                    <a href="#" class="btn darkBtn">Buy</a>
+                </div>
             </div>
+            @if (Model.Description != null)
+            {
+                <div class="descriptionBlock border-radius">
+                    <h4>Description</h4>
+                    <p class="description">@Model.Description</p>
+                    <hr />
+                    <div class="text-center">ID: @Model.Id</div>
+                </div>
+            }
+            <div class="contactInfoBlock w-100 border-radius">
+                <div class="contact-header">
+                    <span>CONTACT WITH SELLER</span>
+                    <a href="#" class="btn mb-1 darkBtn">Message</a>
+                </div>  
+                <div class="contactInfo">
+                    <div>
+                        <div class="avatar">
+                            <img src="@Model.ImageUrl" alter="Avatar"/>
+                        </div>
+                        <div class="otherInfo">
+                            <span>Name</span>
+                            <span>On OLX from DateRegistration</span>
+                        </div>
+                    </div>
+                    <div class="phoneNumber">
+                        <span>09203298123</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6530983046437487"
+                        crossorigin="anonymous"></script>
+                <!-- adv2 -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-6530983046437487"
+                     data-ad-slot="2388995587"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+
         </div>
     </div>
 </div>
-
-
-@* 
-    <div id="details">
-    <div class="card text-danger details-card">
-         <h5 class="card-header">
-            <a href="@ViewBag.ReturnUrl" class="btn btn-dark">
-                <i class="bi bi-arrow-left"></i>
-            </a>
-            <span>Product Information</span>
-        </h5>
-        <div class="card-body">
-            @if (Model.Discount > 0)
-            {
-                <div>
-                    <span class="fs-4 badge bg-primary">SALE</span>
-                </div>
-            }
-            <h5 class="card-title fs-1">@Model.Name</h5>
-            @if (Model.Discount > 0)
-            {
-                <div> 
-                    <span class="fs-4">@(Model.Price - (Model.Price * Model.Discount / 100))$</span>
-                    <span class="fs-4 text-decoration-line-through">@Model.Price$</span>
-                </div>
-            }
-            else
-            {
-                <span class="fs-4">@Model.Price$</span>
-            }
-            <br />
-            <span class="fs-4">
-                @(Model.CategoryName ?? "category not loaded")
-            </span>
-            <div>
-                @* TODO: optimize sending request using JS * @
-                @if(cartService.IsExists(Model.Id))
-                {
-                    <a asp-controller="Cart" asp-action="Remove" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path" class="btn btn-secondary">Remove from Cart</a>
-                }
-                else
-                {
-                    <a asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path" class="btn btn-primary">Add to Cart</a>
-                }
-                <a href="#" class="btn btn-success my-3">Buy</a>
-            </div>
-            <div class="image-block">
-                <img src="@Model.ImageUrl" alt="Product Image" />
-            </div>
-            <p class="card-text">@Model.Description</p>
-        </div> 
-    </div>
-</div> 
-*@
