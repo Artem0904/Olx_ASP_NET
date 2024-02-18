@@ -18,7 +18,7 @@
             <div class="main-info d-flex flex-column border-radius">
                 <div class="time-and-like">
                     <div>
-                        TIME 
+                        @* TIME *@ 
                     </div>
                     @* TODO: optimize sending request using JS *@
                     <div class="like">
@@ -75,12 +75,12 @@
                             <img src="@Model.ImageUrl" alter="Avatar"/>
                         </div>
                         <div class="otherInfo">
-                            <span>Name</span>
-                            <span>On OLX from </span>
+                            <span>@Model.UserName</span>
+                            <span>On OLX from @ViewBag.user.Registerdate</span>
                         </div>
                     </div>
                     <div class="phoneNumber">
-                        <span>09203298123</span>
+                        <span>@ViewBag.user.PhoneNumber</span>
                     </div>
 
                 </div>

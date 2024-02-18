@@ -42,6 +42,8 @@ namespace BusinessLogic.Services
                 newProduct.CityId = city.Id;
             }
 
+
+
             context.Products.Add(newProduct);
             context.SaveChanges();
         }

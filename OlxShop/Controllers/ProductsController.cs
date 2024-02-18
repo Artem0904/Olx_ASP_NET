@@ -7,6 +7,9 @@ using DataAccess.Data;
 using DataAccess.Data.Entities;
 using BusinessLogic.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Humanizer;
+using System;
 
 namespace OlxShop.Controllers
 {
@@ -16,14 +19,24 @@ namespace OlxShop.Controllers
         private readonly IProductsService productsService;
         private readonly ICityService cityService;
         private readonly IMapper mapper;
+        private readonly UserManager<User> UserManager;
+        private readonly IUsersService usersService;
 
-        public ProductsController(IProductsService productsService, ICityService cityService, IMapper mapper)
+
+        public ProductsController(IProductsService productsService, ICityService cityService, IMapper mapper, UserManager<User> UserManager, IUsersService usersService)
         {
             this.productsService = productsService;
             this.cityService = cityService; 
             this.mapper = mapper;
+            this.UserManager = UserManager;
+            this.usersService = usersService;
         }
-
+        private async Task<User> GetCurrentUserAsync()
+        {
+            var user = await UserManager.GetUserAsync(User);
+            return user;
+            
+        }
         private void LoadCategories()
         {
             // Send temporary data to view
@@ -66,7 +79,13 @@ namespace OlxShop.Controllers
                 var newCityDto = new CityDto { Name = model.CityName };
                 cityService.CreateCity(newCityDto);
                 model.CityId = newCityDto.Id;
-            }
+            } 
+
+            var user = GetCurrentUserAsync();
+            model.UserId = user.Result.Id;
+            model.UserName = user.Result.UserName;
+
+
 
             productsService.Create(model);
             return RedirectToAction(nameof(Index));
@@ -119,6 +138,9 @@ namespace OlxShop.Controllers
             var product = productsService.Get(id);
             if (product == null) return NotFound();
 
+            var user = usersService.Get(product.UserId);
+
+            ViewBag.user = user;
             ViewBag.ReturnUrl = returnUrl;
             return View(product);
         }

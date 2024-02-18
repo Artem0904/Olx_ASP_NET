@@ -16,9 +16,12 @@ namespace DataAccess.Data.Configurations
             builder.Property(x => x.InStock).IsRequired();
             builder.Property(x => x.ImageUrl).HasMaxLength(1000).IsRequired();
 
-            //builder.HasOne(x => x.User).WithMany(x => x.Products).HasForeignKey(x => x.UserId);
             builder.Property(x => x.CategoryId).HasDefaultValue(9);
-            //builder.Property(x => x.UserId).HasDefaultValue(1);
+            builder.HasOne(x => x.User)
+               .WithMany(x => x.Products)
+               .HasForeignKey(x => x.UserId)
+               .OnDelete(DeleteBehavior.Restrict);
+            builder.HasMany(x => x.Orders).WithMany(x => x.Products);
         }
     }
 }

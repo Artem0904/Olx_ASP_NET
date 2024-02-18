@@ -34,6 +34,7 @@ namespace BusinessLogic.Extensions
             services.AddScoped<IProductsService, ProductsService>();
             services.AddScoped<IOrdersService, OrdersService>();
             services.AddScoped<IFileService, LocalFileService>();
+            services.AddScoped<IUsersService, UsersService>();
         }
     }
 }

@@ -13,6 +13,8 @@ namespace BusinessLogic.DTOs
         public bool InStock { get; set; }
         public string? CityName { get; set; }
         public int CityId { get; set; }
+        public string? UserName { get; set; }
+        public string UserId { get; set; }
         public IFormFile Image { get; set; }
     }
 }
