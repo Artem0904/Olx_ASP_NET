@@ -10,7 +10,7 @@ namespace DataAccess.Data.Configurations
         {
             builder.HasKey(x => x.Id);
            
-            builder.HasMany(x => x.Orders).WithOne(x => x.User).HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.Restrict);
+            builder.HasMany(x => x.Orders).WithOne(x => x.User).HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

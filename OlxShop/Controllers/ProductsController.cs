@@ -53,8 +53,9 @@ namespace OlxShop.Controllers
             return View(productsService.GetAll());
         }
 
-        public IActionResult Create()
+        public IActionResult Create(string? returnUrl)
         {
+            ViewBag.ReturnUrl = returnUrl;
             LoadCategories();
             return View();
         }
@@ -84,7 +85,6 @@ namespace OlxShop.Controllers
             var user = GetCurrentUserAsync();
             model.UserId = user.Result.Id;
             model.UserName = user.Result.UserName;
-
 
 
             productsService.Create(model);

@@ -23,6 +23,20 @@ body {
 }
 
 
+.lightBtn {
+    background-color: white;
+    border: 4px solid white;
+    font-weight: bolder;
+    color: black;
+}
+
+.lightBtn:hover {
+    background-color: rgba(0,47,52,255);
+    font-weight: bold;
+    border-color: white;
+    color: white;
+}
+
 
 #details{
     width: 80%;
@@ -36,6 +50,7 @@ body {
 
 #details .details-card {
     background-color: rgba(242,244,245,255);
+    border: none;
 }
 
 
@@ -49,14 +64,12 @@ body {
 
 #details .details-card>div{
     padding: 16px;
-    border: 1px solid black;
     gap: 25px;
     flex-wrap: wrap;
 }
 
 #details .details-card .image-block {
     width: 52.5%;
-    border: 1px solid;
     padding: 25px;
     background-color: white;
 }
@@ -65,12 +78,10 @@ body {
     width: 100%;
     object-fit: contain;
     border-radius: 10px;
-    border: 1px solid;
 }
 
 #details .descriptionBlock{
     width: 52.5%;
-    border: 1px solid;
     padding: 25px;
     background-color: white;
 }
@@ -81,7 +92,6 @@ body {
     font-size: 15px;
 }
 #details .main-info {
-    border: 1px solid;
     width: 45%;
     height: auto;
     padding: 15px;
@@ -95,7 +105,6 @@ body {
 #details div.price{
     display: flex;
     justify-content: space-between;
-    border: 1px solid black;
 }
 
 #details .time-and-like{

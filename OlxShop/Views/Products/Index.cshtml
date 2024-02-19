@@ -4,7 +4,7 @@
 <p>You can manage the available products here.</p>
 
 <div>
-    <a asp-action="Create" class="btn btn-primary">Create New Product</a>
+    <a asp-action="Create" asp-route-returnUrl="@Context.Request.Path" class="btn btn-primary">Create New Product</a>
 </div>
 
 <table class="table table-striped">

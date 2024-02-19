@@ -17,10 +17,8 @@ namespace DataAccess.Data.Configurations
             builder.Property(x => x.ImageUrl).HasMaxLength(1000).IsRequired();
 
             builder.Property(x => x.CategoryId).HasDefaultValue(9);
-            builder.HasOne(x => x.User)
-               .WithMany(x => x.Products)
-               .HasForeignKey(x => x.UserId)
-               .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(x => x.User).WithMany(x => x.Products).HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.NoAction);
             builder.HasMany(x => x.Orders).WithMany(x => x.Products);
         }
     }

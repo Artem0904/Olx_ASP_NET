@@ -26,10 +26,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav  flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
+                    <ul class="navbar-nav  flex-grow-1">  
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-controller="Products" asp-action="Index">Products</a>
                         </li>
@@ -50,7 +47,7 @@
                         {
                             <li>
                                 <div>
-                                    <a asp-action="Create" class="btn btn-primary">Create New Product</a>
+                                    <a asp-action="Create" asp-controller="Products" asp-route-returnUrl="@Context.Request.Path" class="btn btn-primary lightBtn">Create New Product</a>
                                 </div>
                             </li>
                         }

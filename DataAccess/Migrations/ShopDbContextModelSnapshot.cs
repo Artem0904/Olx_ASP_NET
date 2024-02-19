@@ -32,7 +32,8 @@ namespace OlxShop.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.HasKey("Id");
 
@@ -96,7 +97,8 @@ namespace OlxShop.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.HasKey("Id");
 
@@ -135,7 +137,8 @@ namespace OlxShop.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.HasKey("Id");
 
@@ -188,29 +191,36 @@ namespace OlxShop.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("CategoryId")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(9);
 
                     b.Property<int>("CityId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
+                        .HasMaxLength(9000)
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Discount")
+                        .HasMaxLength(20)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<bool>("InStock")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<decimal>("Price")
+                        .HasMaxLength(20)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("UserId")
@@ -377,15 +387,15 @@ namespace OlxShop.Migrations
                         {
                             Id = "07e54d3c-7ce2-43f0-8a19-70447ec2e478",
                             AccessFailedCount = 0,
-                            Birthdate = new DateTime(2024, 2, 18, 0, 0, 0, 0, DateTimeKind.Local),
-                            ConcurrencyStamp = "1c497215-72bb-4305-9bbc-95685f2c52f7",
+                            Birthdate = new DateTime(2024, 2, 19, 0, 0, 0, 0, DateTimeKind.Local),
+                            ConcurrencyStamp = "cb343676-9d85-4a61-a33f-ac1561957ea8",
                             Email = "default@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumber = "+380980334755",
                             PhoneNumberConfirmed = false,
-                            Registerdate = new DateTime(2024, 2, 18, 0, 0, 0, 0, DateTimeKind.Local),
-                            SecurityStamp = "042afd20-aa8d-4a87-a789-4f19ef53be63",
+                            Registerdate = new DateTime(2024, 2, 19, 0, 0, 0, 0, DateTimeKind.Local),
+                            SecurityStamp = "3ea14067-d0c5-4cf7-98c5-7d0a8e2fdf10",
                             TwoFactorEnabled = false,
                             UserName = "default@gmail.com"
                         });
@@ -544,7 +554,7 @@ namespace OlxShop.Migrations
                     b.HasOne("DataAccess.Data.Entities.User", "User")
                         .WithMany("Orders")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -567,7 +577,7 @@ namespace OlxShop.Migrations
                     b.HasOne("DataAccess.Data.Entities.User", "User")
                         .WithMany("Products")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Category");
