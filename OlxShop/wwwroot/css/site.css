@@ -173,6 +173,7 @@ body {
 #details .contactInfo .otherInfo{
     display: flex;
     flex-direction: column;
+    font-size: larger;
 }
 
 #details .contactInfo .avatar{
@@ -180,8 +181,11 @@ body {
     object-fit: contain;
     border-radius: 10px;
 }
-
-
+#details .contactInfo .phoneNumber{
+    display: flex;
+    font-size: larger;
+    align-items: center; 
+}
 
 
 
